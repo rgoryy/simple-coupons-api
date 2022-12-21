@@ -29,3 +29,6 @@ networks:
   coupon_default:
     external: false
     driver: bridge
+
+volumes:
+  postgres-data:
