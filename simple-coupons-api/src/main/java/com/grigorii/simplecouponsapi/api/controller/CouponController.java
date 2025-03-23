@@ -28,7 +28,7 @@ public class CouponController {
 
     private final CouponService couponService;
 
-    @GetMapping(ApiPaths.COUPON_PREFIX)
+    @PostMapping(ApiPaths.COUPON_PREFIX)
     public CouponsListResponse getAllCoupons(@RequestBody CouponsListRequest couponsListRequest) {
         System.out.println(couponsListRequest.getPage());
         return couponService.getCoupons(
