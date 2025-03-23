@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  coupons:
+    container_name: coupons-service
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - coupon_default
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: coupons-postgres
+    image: postgres:12.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${PG_DATABASE}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    networks:
+      - coupon_default
+
+networks:
+  coupon_default:
+    external: false
+    driver: bridge

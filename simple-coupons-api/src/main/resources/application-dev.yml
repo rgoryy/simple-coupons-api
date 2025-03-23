@@ -1,0 +1,12 @@
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  docker:
+    compose:
+      file: docker-compose-local.yml
+      lifecycle-management: start_only
+      skip:
+        in-tests: true
+  jpa:
+    hibernate:
+      ddl-auto: create
