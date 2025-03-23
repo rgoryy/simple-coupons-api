@@ -1,6 +1,6 @@
 spring:
-#  profiles:
-#    active: dev
+  #  profiles:
+  #    active: dev
   application:
     name: simple-coupons-api
   datasource:
@@ -8,8 +8,11 @@ spring:
     username: ${PG_USER:postgres}
     password: ${PG_PASSWORD:postgres}
   jpa:
+    hibernate:
+      ddl-auto: create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
 server:
   port: 8080
