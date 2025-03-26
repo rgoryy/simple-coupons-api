@@ -24,13 +24,12 @@ import java.nio.file.Paths;
 @RequiredArgsConstructor
 public class CouponController {
 
-    private static final String UPLOAD_DIR = "uploads/";
+    // private static final String UPLOAD_DIR = "uploads/";
 
     private final CouponService couponService;
 
     @PostMapping(ApiPaths.COUPON_PREFIX)
     public CouponsListResponse getAllCoupons(@RequestBody CouponsListRequest couponsListRequest) {
-        System.out.println(couponsListRequest.getPage());
         return couponService.getCoupons(
                 Integer.parseInt(couponsListRequest.getPage()),
                 Integer.parseInt(couponsListRequest.getSize())
@@ -42,15 +41,15 @@ public class CouponController {
         return couponService.getCouponById(id);
     }
 
-    @GetMapping("/images/{filename}")
-    public ResponseEntity<Resource> getFile(@PathVariable String filename) throws IOException {
-        Path path = Paths.get(UPLOAD_DIR + filename);
-        Resource resource = new FileSystemResource(path);
-
-        if (resource.exists()) {
-            return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(resource);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
+//    @GetMapping("/images/{filename}")
+//    public ResponseEntity<Resource> getFile(@PathVariable String filename) throws IOException {
+//        Path path = Paths.get(UPLOAD_DIR + filename);
+//        Resource resource = new FileSystemResource(path);
+//
+//        if (resource.exists()) {
+//            return ResponseEntity.ok().contentType(MediaType.IMAGE_PNG).body(resource);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//    }
 }
